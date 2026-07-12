@@ -1,3 +1,13 @@
+/* ============================================================
+   Triple T – triplet.me
+   Light Theme "Board" · Stand: Juli 2026
+   Brand-Farben:
+   - Mint (Primary, Flächen):  #00A693  ← Thumbnail-Farbe
+   - Dark Teal (Text/Links):   #0E8074  ← Kontrast-Partner (WCAG AA)
+   - Hintergrund (Seite):      #F4F6F5
+   Grid-Look nur im Hero (CSS-Pattern, kein Bild).
+   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,16 +15,28 @@
 }
 
 :root {
-    --primary: #3b82f6;
-    --primary-dark: #2563eb;
-    --bg: #0f172a;
-    --bg-alt: #1e293b;
-    --bg-card: #1e293b;
-    --text: #e2e8f0;
-    --text-muted: #cbd5e1;
-    --text-dim: #94a3b8;
-    --border: #334155;
-    --highlight: rgba(59, 130, 246, 0.1);
+    /* Brand */
+    --mint: #00A693;
+    --mint-dark: #0E8074;
+    --mint-deep: #04342C;
+
+    /* Flächen */
+    --bg: #F4F6F5;
+    --bg-card: #FFFFFF;
+    --grid-line: #E2E8E6;
+
+    /* Text */
+    --text: #17252A;
+    --text-muted: #46575D;
+    --text-dim: #64757B;
+
+    /* Linien */
+    --border: #E2E8E6;
+    --border-strong: #C9D4D1;
+
+    /* Akzent-Tints */
+    --highlight: rgba(0, 166, 147, 0.08);
+    --highlight-strong: rgba(0, 166, 147, 0.14);
 }
 
 html {
@@ -23,7 +45,7 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-    background: linear-gradient(135deg, var(--bg) 0%, var(--bg-alt) 100%);
+    background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     line-height: 1.6;
@@ -33,16 +55,38 @@ body {
 main {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 4rem 2rem 2rem;
+    padding: 3rem 2rem 2rem;
 }
 
-/* === HERO SECTION === */
+::selection {
+    background: var(--highlight-strong);
+}
+
+a {
+    color: var(--mint-dark);
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--mint);
+    outline-offset: 2px;
+}
+
+/* === HERO SECTION (mit Grid-Look) === */
 .hero {
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 3rem;
     align-items: center;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
+    padding: 3rem;
+    background-color: var(--bg);
+    background-image:
+        linear-gradient(var(--grid-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    border: 1px solid var(--border);
+    border-radius: 16px;
     animation: fadeIn 0.8s ease-out;
 }
 
@@ -62,8 +106,9 @@ main {
     height: 280px;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 32px rgba(23, 37, 42, 0.12);
     position: relative;
+    background: var(--bg-card);
 }
 
 .hero-image img {
@@ -78,38 +123,23 @@ main {
     font-weight: 700;
     margin-bottom: 0.75rem;
     letter-spacing: -0.02em;
-    background: linear-gradient(135deg, var(--text) 0%, var(--text-muted) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--text);
     line-height: 1.1;
 }
 
 .subtitle {
     font-size: 1.35rem;
-    color: var(--text-muted);
+    color: var(--mint-dark);
     margin-bottom: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .description {
     font-size: 1rem;
-    color: var(--text-dim);
+    color: var(--text-muted);
     margin-bottom: 1.5rem;
     line-height: 1.8;
     max-width: 540px;
-}
-
-.coming-soon {
-    font-size: 0.9rem;
-    color: var(--primary);
-    margin-bottom: 1.75rem;
-    font-weight: 500;
-    padding: 0.5rem 1rem;
-    background: var(--highlight);
-    border-left: 3px solid var(--primary);
-    border-radius: 4px;
-    display: inline-block;
 }
 
 .cta-section {
@@ -121,22 +151,22 @@ main {
 .btn {
     display: inline-block;
     padding: 0.875rem 1.75rem;
-    background: var(--primary);
-    color: white;
+    background: var(--mint);
+    color: #FFFFFF;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 600;
     font-size: 1rem;
     transition: all 0.3s ease;
-    border: 2px solid var(--primary);
+    border: 2px solid var(--mint);
     cursor: pointer;
 }
 
 .btn:hover {
-    background: var(--primary-dark);
-    border-color: var(--primary-dark);
+    background: var(--mint-dark);
+    border-color: var(--mint-dark);
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 10px 25px rgba(0, 166, 147, 0.3);
 }
 
 /* === BIO SECTION === */
@@ -168,11 +198,22 @@ main {
     color: var(--text);
 }
 
+.bio-lead a {
+    color: var(--mint-dark);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.bio-lead a:hover {
+    color: var(--mint-deep);
+}
+
 /* === TIMELINE === */
 .timeline {
     position: relative;
     padding-left: 3rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .timeline::before {
@@ -182,8 +223,8 @@ main {
     top: 0.5rem;
     bottom: 0.5rem;
     width: 2px;
-    background: linear-gradient(180deg, var(--border) 0%, var(--primary) 50%, var(--border) 100%);
-    opacity: 0.5;
+    background: linear-gradient(180deg, var(--border-strong) 0%, var(--mint) 50%, var(--border-strong) 100%);
+    opacity: 0.6;
 }
 
 .timeline-item {
@@ -193,12 +234,13 @@ main {
     background: var(--bg-card);
     border-radius: 12px;
     border: 1px solid var(--border);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .timeline-item:hover {
     transform: translateX(4px);
-    border-color: var(--primary);
+    border-color: var(--mint);
+    box-shadow: 0 4px 16px rgba(23, 37, 42, 0.06);
 }
 
 .timeline-marker {
@@ -209,52 +251,52 @@ main {
     height: 14px;
     border-radius: 50%;
     background: var(--bg);
-    border: 2px solid var(--border);
+    border: 2px solid var(--border-strong);
     transition: all 0.2s ease;
 }
 
 .timeline-item:hover .timeline-marker {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+    border-color: var(--mint);
+    box-shadow: 0 0 0 4px var(--highlight);
 }
 
 .timeline-item.highlight {
-    border-color: rgba(59, 130, 246, 0.3);
-    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border-color: rgba(0, 166, 147, 0.35);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 166, 147, 0.05) 100%);
 }
 
 .timeline-item.highlight .timeline-marker {
-    background: var(--primary);
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+    background: var(--mint);
+    border-color: var(--mint);
+    box-shadow: 0 0 0 4px var(--highlight);
 }
 
 .timeline-item.current {
-    border-color: var(--primary);
-    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(59, 130, 246, 0.08) 100%);
-    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.1);
+    border-color: var(--mint);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 166, 147, 0.08) 100%);
+    box-shadow: 0 4px 20px rgba(0, 166, 147, 0.12);
 }
 
 .timeline-item.current .timeline-marker {
-    background: var(--primary);
-    border-color: var(--primary);
-    box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.25);
+    background: var(--mint);
+    border-color: var(--mint);
+    box-shadow: 0 0 0 5px var(--highlight-strong);
     animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
     0%, 100% {
-        box-shadow: 0 0 0 5px rgba(59, 130, 246, 0.25);
+        box-shadow: 0 0 0 5px var(--highlight-strong);
     }
     50% {
-        box-shadow: 0 0 0 8px rgba(59, 130, 246, 0.4);
+        box-shadow: 0 0 0 8px rgba(0, 166, 147, 0.28);
     }
 }
 
 .timeline-year {
     font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--primary);
+    font-weight: 700;
+    color: var(--mint-dark);
     letter-spacing: 0.05em;
     text-transform: uppercase;
     margin-bottom: 0.4rem;
@@ -275,24 +317,122 @@ main {
 }
 
 .timeline-content p strong {
-    color: var(--text-muted);
+    color: var(--text);
     font-weight: 600;
 }
 
-/* === VIDEOS PLACEHOLDER === */
-.videos-placeholder {
-    padding: 2.5rem;
-    text-align: center;
-    background: var(--bg-card);
-    border: 1px dashed var(--border);
-    border-radius: 12px;
-    margin-top: 2rem;
+/* === VIDEO SECTION === */
+.videos {
+    margin-bottom: 4rem;
 }
 
-.placeholder-text {
+.videos h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+}
+
+.video-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.video-facade {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.video-facade:hover {
+    border-color: var(--mint);
+    box-shadow: 0 8px 24px rgba(23, 37, 42, 0.1);
+}
+
+.video-facade img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.video-facade iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid var(--mint);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.video-play:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: #FFFFFF;
+}
+
+.video-play-icon {
+    color: var(--mint-dark);
+    font-size: 1.5rem;
+    line-height: 1;
+    padding-left: 4px; /* optisch zentriert */
+}
+
+.video-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0.9rem;
+    line-height: 1.4;
+}
+
+.video-note {
+    font-size: 0.8rem;
     color: var(--text-dim);
-    font-style: italic;
-    font-size: 0.95rem;
+    margin-top: 0.3rem;
+}
+
+.videos-more {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.videos-more a {
+    color: var(--mint-dark);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.videos-more a:hover {
+    color: var(--mint-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 /* === FOOTER === */
@@ -313,20 +453,41 @@ footer a {
 }
 
 footer a:hover {
-    color: var(--primary);
+    color: var(--mint-dark);
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+    .hero {
+        animation: none;
+    }
+    .timeline-item.current .timeline-marker {
+        animation: none;
+    }
+    .timeline-item,
+    .timeline-marker,
+    .btn,
+    .video-facade,
+    .video-play {
+        transition: none;
+    }
 }
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
     main {
-        padding: 2.5rem 1.5rem 1.5rem;
+        padding: 2rem 1.5rem 1.5rem;
     }
 
     .hero {
         grid-template-columns: 1fr;
         gap: 2rem;
         text-align: left;
-        margin-bottom: 3.5rem;
+        margin-bottom: 3rem;
+        padding: 2rem;
     }
 
     .hero-image {
@@ -342,14 +503,24 @@ footer a:hover {
         font-size: 1.15rem;
     }
 
-    .bio-intro h2 {
+    .bio-intro h2,
+    .videos h2 {
         font-size: 1.5rem;
+    }
+
+    .video-grid {
+        gap: 1.5rem;
     }
 }
 
 @media (max-width: 600px) {
     main {
-        padding: 2rem 1rem 1rem;
+        padding: 1.5rem 1rem 1rem;
+    }
+
+    .hero {
+        padding: 1.5rem;
+        background-size: 22px 22px;
     }
 
     .hero-image {
@@ -383,7 +554,8 @@ footer a:hover {
         padding: 1rem 1.25rem;
     }
 
-    .bio-intro h2 {
+    .bio-intro h2,
+    .videos h2 {
         font-size: 1.25rem;
     }
 
@@ -391,7 +563,12 @@ footer a:hover {
         font-size: 1rem;
     }
 
-    .videos-placeholder {
-        padding: 1.5rem;
+    .video-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .video-play {
+        width: 56px;
+        height: 56px;
     }
 }
