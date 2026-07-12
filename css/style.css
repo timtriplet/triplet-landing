@@ -5,7 +5,6 @@
    - Mint (Primary, Flächen):  #00A693  ← Thumbnail-Farbe
    - Dark Teal (Text/Links):   #0E8074  ← Kontrast-Partner (WCAG AA)
    - Hintergrund (Seite):      #F4F6F5
-   Grid-Look nur im Hero (CSS-Pattern, kein Bild).
    ============================================================ */
 
 * {
@@ -23,7 +22,6 @@
     /* Flächen */
     --bg: #F4F6F5;
     --bg-card: #FFFFFF;
-    --grid-line: #E2E8E6;
 
     /* Text */
     --text: #17252A;
@@ -78,15 +76,7 @@ button:focus-visible {
     grid-template-columns: 280px 1fr;
     gap: 3rem;
     align-items: center;
-    margin-bottom: 4rem;
-    padding: 3rem;
-    background-color: var(--bg);
-    background-image:
-        linear-gradient(var(--grid-line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-    background-size: 28px 28px;
-    border: 1px solid var(--border);
-    border-radius: 16px;
+    margin-bottom: 5rem;
     animation: fadeIn 0.8s ease-out;
 }
 
@@ -115,6 +105,10 @@ button:focus-visible {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    /* Bild-Ausschnitt: 2. Wert = vertikale Position.
+       0% = Bild ganz oben ausrichten, 50% = Mitte (Standard).
+       Kleinerer Wert schiebt den sichtbaren Ausschnitt nach oben. */
+    object-position: 50% 20%;
     display: block;
 }
 
@@ -487,7 +481,6 @@ footer a:hover {
         gap: 2rem;
         text-align: left;
         margin-bottom: 3rem;
-        padding: 2rem;
     }
 
     .hero-image {
@@ -516,11 +509,6 @@ footer a:hover {
 @media (max-width: 600px) {
     main {
         padding: 1.5rem 1rem 1rem;
-    }
-
-    .hero {
-        padding: 1.5rem;
-        background-size: 22px 22px;
     }
 
     .hero-image {
