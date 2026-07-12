@@ -108,7 +108,7 @@ button:focus-visible {
     /* Bild-Ausschnitt: 2. Wert = vertikale Position.
        0% = Bild ganz oben ausrichten, 50% = Mitte (Standard).
        Kleinerer Wert schiebt den sichtbaren Ausschnitt nach oben. */
-    object-position: 50% 40%;
+    object-position: 20% 40%;
     display: block;
 }
 
