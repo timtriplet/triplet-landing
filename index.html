@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Triple T – 7 Jahre Finanztracking, echte Zahlen, dokumentierte Entscheidungen.">
+    <meta name="description" content="Triple T – 8 Jahre Finanztracking, echte Zahlen, dokumentierte Entscheidungen.">
     <title>Triple T – Personal Finance</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -19,10 +19,10 @@
                 <h1>Triple T</h1>
                 <p class="subtitle">Echte Zahlen. Echte Entscheidungen. Keine Tipps.</p>
                 <p class="description">
-                    Ich dokumentiere meinen Werdegang in Finanzen und Karriere – monatliche Budget-Videos, Depot-Videos, Entscheidungen und Erfahrungen. Mit echten Zahlen aus 7 Jahren Tracking. Ohne Hochglanz-Versprechen.
+                    Hi ich bin Tim und dokumentiere meinen Werdegang in Finanzen und Karriere – monatliche Budget-Videos, Depot-Videos, Entscheidungen und Erfahrungen. Mit echten Zahlen aus 8 Jahren Tracking. Ohne Hochglanz-Versprechen.
                 </p>
                 <div class="cta-section">
-                    <a href="https://youtube.com/@timTripleT" class="btn" target="_blank" rel="noopener">YouTube Kanal</a>
+                    <a href="https://youtube.com/@TimTripleT" class="btn" target="_blank" rel="noopener">YouTube Kanal</a>
                 </div>
             </div>
         </section>
@@ -30,9 +30,9 @@
         <!-- Bio Section mit Timeline -->
         <section class="bio">
             <div class="bio-intro">
-                <h2>Partylöwe. Studienwechseler. Dann erfolgreicher Abschluss.</h2>
+                <h2>Volksbank-Stammkunde. Studienwechsel. Sechsstelliges Depot.</h2>
                 <p class="bio-lead">
-                    Der Weg war alles andere als linear. Vom Stammkunden der Volksbank, der zum ersten Mal in den „UniFavorit: Aktien" investierte, über einen abgebrochenen Studiengang bis zum sechsstelligen Depot mit 26. Hier die Eckdaten – die Story dazu kommt in den Videos.
+                    Vom 25-€-Sparplan am Weltspartag über einen Studienwechsel und sechs parallele ETFs bis zum sechsstelligen Depot mit 26 – inklusive einer Wette mit geliehenem Geld. Die Eckdaten stehen hier, die ganze Story erzähle ich <a href="https://youtu.be/2RQJF1odHJE" target="_blank" rel="noopener">im ersten Video</a>.
                 </p>
             </div>
 
@@ -118,15 +118,79 @@
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="videos-placeholder">
-                <p class="placeholder-text">Hier kommen bald die Videos.</p>
+        <!-- Video Section: Klick-to-Load-Fassade (DSGVO-freundlich).
+             Kein Kontakt zu Google/YouTube vor dem Klick: Thumbnails liegen lokal
+             im Repo, der youtube-nocookie-Iframe wird erst per Klick nachgeladen.
+
+             Regel: Maximal die 3 neuesten Videos zeigen, neuestes zuerst.
+             Neues Video ergänzen = einen video-facade-Block kopieren,
+             data-video-id + data-video-title anpassen, Thumbnail nach
+             images/ legen, ältestes Video-Element entfernen. -->
+        <section class="videos">
+            <h2>Die Videos</h2>
+            <div class="video-grid">
+
+                <div class="video-item">
+                    <div class="video-facade"
+                         data-video-id="Xw3bvaJuzlU"
+                         data-video-title="So plane ich mein Budget mit 4.227,74 € | Juli 2026">
+                        <img src="images/thumb-video-2.jpg"
+                             alt="Thumbnail: So plane ich mein Budget mit 4.227,74 € | Juli 2026"
+                             loading="lazy">
+                        <button type="button" class="video-play"
+                                aria-label="Video abspielen: So plane ich mein Budget mit 4.227,74 € | Juli 2026">
+                            <span class="video-play-icon" aria-hidden="true">▶</span>
+                        </button>
+                    </div>
+                    <h3 class="video-title">So plane ich mein Budget mit 4.227,74&nbsp;€ | Juli 2026</h3>
+                    <p class="video-note">Beim Abspielen wird das Video von YouTube (youtube-nocookie.com) geladen.</p>
+                </div>
+
+                <div class="video-item">
+                    <div class="video-facade"
+                         data-video-id="2RQJF1odHJE"
+                         data-video-title="8 Jahre Finanztracking">
+                        <img src="images/thumb-video-1.jpg"
+                             alt="Thumbnail: 8 Jahre Finanztracking"
+                             loading="lazy">
+                        <button type="button" class="video-play"
+                                aria-label="Video abspielen: 8 Jahre Finanztracking">
+                            <span class="video-play-icon" aria-hidden="true">▶</span>
+                        </button>
+                    </div>
+                    <h3 class="video-title">8 Jahre Finanztracking</h3>
+                    <p class="video-note">Beim Abspielen wird das Video von YouTube (youtube-nocookie.com) geladen.</p>
+                </div>
+
             </div>
+            <p class="videos-more">
+                <a href="https://youtube.com/@TimTripleT" target="_blank" rel="noopener">Alle Videos auf YouTube →</a>
+            </p>
         </section>
     </main>
 
     <footer>
         <p><a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a></p>
     </footer>
+
+    <script>
+    // Klick-to-Load: Iframe (youtube-nocookie) erst nach Klick einsetzen.
+    document.querySelectorAll('.video-facade').forEach(function (facade) {
+        facade.querySelector('.video-play').addEventListener('click', function () {
+            var id = facade.dataset.videoId;
+            var title = facade.dataset.videoTitle;
+            var iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+            iframe.title = title;
+            iframe.allow = 'autoplay; encrypted-media; picture-in-picture; web-share';
+            iframe.allowFullscreen = true;
+            iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+            facade.replaceChildren(iframe);
+            facade.classList.add('is-playing');
+        });
+    });
+    </script>
 </body>
 </html>
