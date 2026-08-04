@@ -108,7 +108,7 @@ button:focus-visible {
     /* Bild-Ausschnitt: 2. Wert = vertikale Position.
        0% = Bild ganz oben ausrichten, 50% = Mitte (Standard).
        Kleinerer Wert schiebt den sichtbaren Ausschnitt nach oben. */
-    object-position: 20% 40%;
+    object-position: 50% 20%;
     display: block;
 }
 
@@ -330,7 +330,7 @@ button:focus-visible {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 2rem;
 }
 
@@ -502,6 +502,7 @@ footer a:hover {
     }
 
     .video-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 1.5rem;
     }
 }
